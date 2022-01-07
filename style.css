@@ -13,6 +13,10 @@ button {
   cursor: pointer;
 }
 
+li {
+  list-style: none;
+}
+
 button:focus {
   outline: none;
   border: none;
@@ -57,7 +61,19 @@ input:focus {
 }
 
 .timer-list {
-  overflow-y: scroll;
+  overflow: scroll;
+}
+
+.timer-list__item:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+
+.input-form {
+  /* position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(60, 138, 184); */
 }
 
 .timer-form {

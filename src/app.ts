@@ -6,15 +6,21 @@ class App {
   private readonly timer: Timer;
   private readonly timerForm: TimerForm;
 
-  constructor(private timerRoot: HTMLElement, private formRoot: HTMLElement) {
-    this.timer = new Timer(this.timerRoot);
-    this.timerForm = new TimerForm(this.formRoot);
+  constructor(timerRoot: HTMLElement, formRoot: HTMLElement) {
+    this.timer = new Timer(timerRoot);
+
+    this.timerForm = new TimerForm();
+    this.timerForm.attachTo(formRoot, "beforeend");
 
     this.timerForm.setOnSubmitListener((e: SubmitEvent) => {
       e.preventDefault();
 
       const input = document.querySelector("#timer-name")! as HTMLInputElement;
-      const item = new ListItem(input.value);
+
+      if (!Boolean(input.value)) return;
+
+      this.timer.list.addChild(new ListItem(input.value));
+      input.value = "";
     });
   }
 }

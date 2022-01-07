@@ -3,13 +3,19 @@ import { Total } from "./timer-components/total.js";
 
 // 이번주 안까지 완료!
 export class Timer {
-  private readonly total: Total;
-  private readonly list: List;
+  readonly total: Total;
+  readonly list: List;
 
-  constructor(private root: HTMLElement) {
-    this.total = new Total(root);
-    this.list = new List(root);
-    this.total;
-    this.list;
+  constructor(root: HTMLElement) {
+    this.total = new Total();
+    this.total.attachTo(
+      root.querySelector(".timer-top")! as HTMLDivElement,
+      "beforeend"
+    );
+    this.list = new List(this.total);
+    this.list.attachTo(
+      root.querySelector(".timer-btm")! as HTMLDivElement,
+      "beforeend"
+    );
   }
 }

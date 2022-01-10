@@ -2,7 +2,11 @@ import { BaseComponent } from "../component.js";
 
 type OnSubmitListener = (e: SubmitEvent) => void;
 
-export class TimerForm extends BaseComponent<HTMLFormElement> {
+export interface Form {
+  setOnSubmitListener(listener: OnSubmitListener): void;
+}
+
+export class TimerForm extends BaseComponent<HTMLFormElement> implements Form {
   private submitListener?: OnSubmitListener;
   constructor() {
     super(`<form class="timer-form">

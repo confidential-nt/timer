@@ -1,9 +1,12 @@
+import { Observer } from "./timer/timer-components/total";
+
 export interface Component {
   attachTo(parent: HTMLElement, position: InsertPosition): void;
 }
 
 export class BaseComponent<T extends HTMLElement> implements Component {
   protected readonly element: T;
+
   constructor(htmlString: string) {
     const template = document.createElement("template");
     template.innerHTML = htmlString;
@@ -16,19 +19,20 @@ export class BaseComponent<T extends HTMLElement> implements Component {
   }
 }
 
-export class TimeCoponent<T extends HTMLElement> extends BaseComponent<T> {
+export abstract class TimeCoponent<
+  T extends HTMLElement
+> extends BaseComponent<T> {
   protected time: number = 0;
   private timeId?: number;
 
   protected increaseTime<K extends HTMLElement>(
     selector: string,
-    observer?: TimeCoponent<K>
+    observer?: TimeCoponent<K> & Observer
   ) {
     this.timeId = setInterval(() => {
       this.time += 1;
       if (observer) {
-        observer.time += 1;
-        observer.paintTime(".total-time");
+        observer.onNotify();
       }
       this.paintTime(selector);
     }, 1000);

@@ -1,10 +1,11 @@
 import { Timer } from "./components/timer/timer.js";
-import { TimerForm } from "./components/timer-form/timer-form.js";
+import { Form, TimerForm } from "./components/timer-form/timer-form.js";
 import { ListItem } from "./components/timer/timer-components/list.js";
+import { Component } from "./components/component.js";
 
 class App {
   private readonly timer: Timer;
-  private readonly timerForm: TimerForm;
+  private readonly timerForm: Form & Component;
 
   constructor(timerRoot: HTMLElement, formRoot: HTMLElement) {
     this.timer = new Timer(timerRoot);

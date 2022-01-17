@@ -19,9 +19,7 @@ export class BaseComponent<T extends HTMLElement> implements Component {
   }
 }
 
-export abstract class TimeCoponent<
-  T extends HTMLElement
-> extends BaseComponent<T> {
+export class TimeCoponent<T extends HTMLElement> extends BaseComponent<T> {
   protected time: number = 0;
   private timeId?: number;
 

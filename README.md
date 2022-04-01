@@ -20,7 +20,7 @@ Typescript, CSS, HTML
 
 (실행 화면)
 
-![실행화면](./timer.png)
+![실행화면](./img/timer.png)
 
 ## 아쉬웠던 점
 
